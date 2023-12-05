@@ -1,0 +1,26 @@
+GET http://localhost:2020/tables
+
+###
+
+GET http://localhost:2020/tables/11
+###
+
+GET http://localhost:2020/one/17
+###
+
+POST http://localhost:2020/new/23
+Content-Type: application/json
+
+{
+    "name":"Janani Priyadharshini M S",
+    "address":"Shevapet, Salem",
+    "institution":"Sona Collg of Tech",
+    "contact":7373787264,
+    "email":"skumar.janani@gmail.com",
+    "course":"Java Full Stack Developer",
+    "courseamount":30000,
+    "dateofjoined":"2023-07-26",
+    "firstpaid":2000,
+    "firstdatepaid":"2023-07-26",
+    "datetobepaid":"2023-08-26"
+}
