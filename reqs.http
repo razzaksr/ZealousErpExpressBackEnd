@@ -24,3 +24,6 @@ Content-Type: application/json
     "firstdatepaid":"2023-07-26",
     "datetobepaid":"2023-08-26"
 }
+###
+
+GET http://localhost:2020/find/23/23010

@@ -128,6 +128,23 @@ function numberToWords(n)
 
 // routings
 
+app.get('/find/:tab/:id',async(req,res)=>{
+	const tab=numberToWords(req.params.tab)
+	const id=parseInt(req.params.id)
+	const sql=`select * from ${tab} where ano = ${id}`
+	base.query(sql,(err,records)=>{
+		if(err){
+			res.status(500).json({error:err.message})
+			return
+		}
+		if(records.length==0){
+			res.status(404).json({error:'No records found'})
+			return
+		}
+		res.status(200).json({message:records[0]})
+	})
+})
+
 app.post('/new/:num',async(req,res)=>{
 	const tab = numberToWords(req.params.num)
 	const{name,address,institution,contact,email,course,courseamount,dateofjoined,firstpaid,firstdatepaid,datetobepaid}=req.body
