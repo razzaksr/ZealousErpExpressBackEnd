@@ -128,6 +128,23 @@ function numberToWords(n)
 
 // routings
 
+app.put('/change/:tab',async(req,res)=>{
+	const tab=numberToWords(req.params.tab)
+	const{ano,name,address,institution,contact,email,course,courseamount,dateofjoined,firstpaid,firstdatepaid,datetobepaid,finalpaid,certificate,dateofcompletion}=req.body
+	const sql=`update ${tab} set name=?,address=?,institution=?,contactno=?,email=?,course=?,courseamount=?,dateofjoined=?,firstpaid=?,firstdatepaid=?,datetobepaid=?,finalpaid=?,certificate=?,dateofcompletion=? where ano=?`
+	base.query(sql,[name,address,institution,contact,email,course,courseamount,dateofjoined,firstpaid,firstdatepaid,datetobepaid,finalpaid,certificate,dateofcompletion,ano],(err,ack)=>{
+		if(err){
+			res.status(500).json({error:err.message})
+			return
+		}
+		if(ack.affectedRows==0){
+			res.status(404).json({error:"can't update record"})
+			return
+		}
+		res.status(200).json({message:`candidate ${name} has updated`})
+	})
+})
+
 app.get('/find/:tab/:id',async(req,res)=>{
 	const tab=numberToWords(req.params.tab)
 	const id=parseInt(req.params.id)
